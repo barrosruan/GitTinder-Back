@@ -1,5 +1,4 @@
-const { Timestamps } = require('mongodb');
-const { Schema, model } = require('mongoose');
+const { Schema, model} = require('mongoose');
 
 const DevSchema = new Schema({
     name: {
@@ -16,7 +15,23 @@ const DevSchema = new Schema({
     avatar: {
         type: String,
         required: true,
-    }
+    },
+
+    likes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Dev',
+    
+    }],
+
+    dislikes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Dev',
+    
+    }],
+
+
+
+
 }, {Timestamps: true,}
 );
 
