@@ -14,10 +14,12 @@ module.exports = {
         
         const response =  await axios.get(`https://api.github.com/users/${username}`);
 
+        console.log(response.data);
+
         const { name, bio, avatar_url: avatar } = response.data;
 
         const dev = await Dev.create({
-            name,
+            name: name ?? username,
             user: username,
             bio,
             avatar: avatar,
