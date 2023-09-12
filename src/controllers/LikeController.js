@@ -19,8 +19,10 @@ module.exports = {
     console.log(`User ${loggedDev.user} liked ${targetDev.user}`);
 
     if (targetDev.likes.includes(loggedDev._id)) {
-      const loggedSocket = request.connectedUsers?.[user];
-      const targetSocket = request.connectedUsers?.[devId];
+      console.log("QUEM MASSA DEU MATCH");
+
+      const loggedSocket = request.connectedUsers[user];
+      const targetSocket = request.connectedUsers[devId];
 
       if (loggedSocket) {
         request.io.to(loggedSocket).emit("match", targetDev);

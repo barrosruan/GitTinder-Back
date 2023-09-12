@@ -8,12 +8,12 @@ const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
-const connectdUsers = {};
+const connectedUsers = {};
 
-io.on("connecttion", (socket) => {
+io.on("connection", (socket) => {
   const { user } = socket.handshake.query;
-  console.log(user, socket.id);
-  connectdUsers[user] = socket.id;
+  connectedUsers[user] = socket.id;
+  console.log("Client connectet:", user);
 });
 
 mongoose.connect(
@@ -23,7 +23,7 @@ mongoose.connect(
 
 app.use((req, res, next) => {
   req.io = io;
-  req.connectdUsers = connectdUsers;
+  req.connectedUsers = connectedUsers;
 
   return next();
 });
@@ -32,4 +32,4 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-server.listen(3333);
+app.listen(3333);
