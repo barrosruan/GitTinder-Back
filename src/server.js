@@ -22,6 +22,7 @@ mongoose.connect(
 );
 
 app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
   req.io = io;
   req.connectedUsers = connectedUsers;
 
