@@ -12,7 +12,7 @@ const io = require("socket.io")(server, {
   },
 });
 
-app.set("port", process.env.PORT || 3333);
+const port = process.env.PORT || 3333;
 
 const connectedUsers = {};
 
